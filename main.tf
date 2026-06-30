@@ -8,7 +8,7 @@ provider "azurerm" {
 
 # Create Storage Account 
 resource "azurerm_storage_account" "sg1" { 
- name      =  "otstorageaccount" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
+ name      =  "otstorageaccount-lou01" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
  resource_group_name   =  var.rg_name
  location     =  var.location
  # Performance tier: Standard (HDD-backed)
@@ -22,7 +22,7 @@ resource "azurerm_storage_account" "sg1" {
 
 # Create a Blob inside the Storage Account
 resource "azurerm_storage_container" "newcontainer1" { 
- name     =  "container-json" 
+ name     =  "container-json-lou01" 
  storage_account_id =  azurerm_storage_account.sg1.id
  # Access level: "blob"    = anonymous read access to blobs only
  container_access_type =  "blob" 
@@ -30,7 +30,7 @@ resource "azurerm_storage_container" "newcontainer1" {
 
 # Create Storage Account 
 resource "azurerm_storage_account" "sg2" { 
- name      =  "csestologs" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
+ name      =  "csestologs-lou01" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
  resource_group_name   =  var.rg_name
  location     =  var.location
  # Performance tier: Standard (HDD-backed)
@@ -44,7 +44,7 @@ resource "azurerm_storage_account" "sg2" {
 
 # Create a Blob inside the Storage Account
 resource "azurerm_storage_container" "newcontainer2" { 
- name     =  "container-logs" 
+ name     =  "container-logs-lou01" 
  storage_account_id =  azurerm_storage_account.sg2.id
  # Access level: "blob"    = anonymous read access to blobs only
  container_access_type =  "blob" 
@@ -52,7 +52,7 @@ resource "azurerm_storage_container" "newcontainer2" {
 
 # Create MySQL Server 
 resource "azurerm_mysql_flexible_server" "serverformation1" { 
-name    =  "sqlserver" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
+name    =  "sqlserver-lou01" # add your name to make it unique. Can only consist of lowercase letters and numbers, and must be between 3 and 24 characters long.
 
 location    =  var.location 
 resource_group_name  =  var.rg_name  
@@ -69,7 +69,7 @@ administrator_password =  "formationCodingGame0!"
   }
 } 
 resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
-  name                = "require_secure_transport"
+  name                = "require_secure_transport-lou01"
   resource_group_name = var.rg_name
   server_name         = azurerm_mysql_flexible_server.serverformation1.name
   value               = "OFF"
@@ -77,7 +77,7 @@ resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
 
 # Create MySQL database 
 resource "azurerm_mysql_flexible_database" "mysqldb1" { 
- name    =  "mysqldb1-iac" 
+ name    =  "mysqldb1-iac-lou01" 
  resource_group_name =  var.rg_name
  server_name   =  azurerm_mysql_flexible_server.serverformation1.name
  charset    =  "utf8" 
@@ -86,7 +86,7 @@ resource "azurerm_mysql_flexible_database" "mysqldb1" {
 } 
 # Configure firewall to open access 
 resource "azurerm_mysql_flexible_server_firewall_rule" "mysqlfwrule1" { 
- name        =  "mysqlfwrule1-iac" 
+ name        =  "mysqlfwrule1-iac-lou01" 
  resource_group_name =  var.rg_name
  server_name     =  azurerm_mysql_flexible_server.serverformation1.name 
  start_ip_address  =  "0.0.0.0"
