@@ -69,7 +69,7 @@ administrator_password =  "formationCodingGame0!"
   }
 } 
 resource "azurerm_mysql_flexible_server_configuration" "ssl_config" {
-  name                = "require_secure_transportlou01"
+  name                = "require_secure_transport"
   resource_group_name = var.rg_name
   server_name         = azurerm_mysql_flexible_server.serverformation1.name
   value               = "OFF"
@@ -86,7 +86,7 @@ resource "azurerm_mysql_flexible_database" "mysqldb1" {
 } 
 # Configure firewall to open access 
 resource "azurerm_mysql_flexible_server_firewall_rule" "mysqlfwrule1" { 
- name        =  "mysqlfwrule1-iaclou01" 
+ name        =  "mysqlfwrule1-iac" 
  resource_group_name =  var.rg_name
  server_name     =  azurerm_mysql_flexible_server.serverformation1.name 
  start_ip_address  =  "0.0.0.0"
